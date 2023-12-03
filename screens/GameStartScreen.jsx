@@ -1,25 +1,46 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
 
-export default function GameStartScreen() {
+export default function GameStartScreen({ onSendNumber }) {
+  const [enteredNumber, setEnteredNumber] = useState("");
 
-  const resetHandler = () =>{
-    
-  }
-  const confirmHandler = () =>{
-    
-  }
+  const resetHandler = () => {
+    setEnteredNumber("");
+  };
+  const confirmHandler = () => {
+    const chosenNumber = parseInt(enteredNumber);
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      Alert.alert("Invalid Number!", "Number must be 1 - 99", [
+        { text: "OK", style: "destructive", onPress: resetHandler },
+      ]);
+      return;
+    }
+    onSendNumber(chosenNumber);
+  };
+
+  const numberHandler = (text) => {
+    setEnteredNumber(text);
+  };
 
   return (
     <View style={styles.container}>
       <Text>Guess Number App </Text>
+
       <View style={styles.Card}>
-        <TextInput maxLength={2} keyboardType="number-pad" style={styles.input} />
+        <TextInput
+          onChangeText={numberHandler}
+          maxLength={2}
+          keyboardType="number-pad"
+          style={styles.input}
+          value={enteredNumber}
+        />
+
         <View style={styles.buttonsContainer}>
           <View style={styles.button}>
             <CustomButton onPress={resetHandler}>Clear</CustomButton>
           </View>
+
           <View style={styles.button}>
             <CustomButton onPress={confirmHandler}>Confirm</CustomButton>
           </View>
@@ -59,10 +80,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonsContainer: {
-    flexDirection:"row",
-},
+    flexDirection: "row",
+  },
   button: {
-    flex:1,
-    
-},
+    flex: 1,
+  },
 });
