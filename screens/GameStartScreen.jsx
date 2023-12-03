@@ -1,13 +1,16 @@
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import CustomButton from "../components/CustomButton";
+import Title from "../components/Title";
 
 export default function GameStartScreen({ onSendNumber }) {
+
   const [enteredNumber, setEnteredNumber] = useState("");
 
   const resetHandler = () => {
     setEnteredNumber("");
   };
+
   const confirmHandler = () => {
     const chosenNumber = parseInt(enteredNumber);
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
@@ -25,7 +28,8 @@ export default function GameStartScreen({ onSendNumber }) {
 
   return (
     <View style={styles.container}>
-      <Text>Guess Number App </Text>
+      
+      <Title>Guess Number App </Title>
 
       <View style={styles.Card}>
         <TextInput
