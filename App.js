@@ -8,25 +8,29 @@ import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
-  const [gameIsOver, setGameIsOver] = useState(true)
+  const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessCounts, setGuessCounts] = useState(0)
 
   const sendedNumberHandler = (sendedNumber) => {
     setUserNumber(sendedNumber);
-    setGameIsOver(false)
+    setGameIsOver(false);
   };
 
-const gameOverHandler = () =>{
-  setGameIsOver(true)
-}
+  const gameOverHandler = (numberOfGuess) => {
+    setGameIsOver(true);
+    setGuessCounts(numberOfGuess)
+  };
 
   let screen = <GameStartScreen onSendNumber={sendedNumberHandler} />;
 
   if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
   }
 
-  if(gameIsOver && userNumber){
-    screen = <GameOverScreen/>
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen roundsNumber={guessCounts} userNumber={userNumber} />;
   }
   return (
     <LinearGradient

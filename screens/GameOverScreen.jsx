@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Title from "./../components/Title";
-import CustomButton from './../components/CustomButton';
+import CustomButton from "./../components/CustomButton";
 
-export default function GameOverScreen({ userNumber }) {
+export default function GameOverScreen({ roundsNumber, userNumber }) {
   return (
     <View style={styles.container}>
       <Title>GAME OVER</Title>
@@ -11,12 +11,10 @@ export default function GameOverScreen({ userNumber }) {
         <Image style={styles.img} source={require("../assets/success.jpg")} />
       </View>
       <Text style={styles.result}>
-        You found the number {userNumber} with{" "}
-        <Text style={styles.number}>10</Text> attempts
+        You found the number <Text style={styles.number}>{userNumber}</Text> with
+        <Text style={styles.number}> {roundsNumber}</Text> attempts
       </Text>
-      <CustomButton>
-        New Game
-      </CustomButton>
+      <CustomButton>New Game</CustomButton>
     </View>
   );
 }
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
   result: {
     fontSize: 20,
     textAlign: "center",
-    marginBottom:20,
+    marginBottom: 20,
   },
   number: {
     color: "red",
