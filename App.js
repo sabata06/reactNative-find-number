@@ -23,7 +23,7 @@ export default function App() {
   const startNewGameHandler = () =>{
     setUserNumber(null)
     setGuessCounts(0)
-    
+
   }
 
   let screen = <GameStartScreen onSendNumber={sendedNumberHandler} />;
