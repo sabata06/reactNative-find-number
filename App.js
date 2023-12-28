@@ -20,6 +20,11 @@ export default function App() {
     setGameIsOver(true);
     setGuessCounts(numberOfGuess)
   };
+  const startNewGameHandler = () =>{
+    setUserNumber(null)
+    setGuessCounts(0)
+    
+  }
 
   let screen = <GameStartScreen onSendNumber={sendedNumberHandler} />;
 
@@ -30,7 +35,7 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen roundsNumber={guessCounts} userNumber={userNumber} />;
+    screen = <GameOverScreen roundsNumber={guessCounts} userNumber={userNumber} onStartNewGame={startNewGameHandler}/>;
   }
   return (
     <LinearGradient

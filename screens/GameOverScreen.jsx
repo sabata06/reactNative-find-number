@@ -3,7 +3,7 @@ import React from "react";
 import Title from "./../components/Title";
 import CustomButton from "./../components/CustomButton";
 
-export default function GameOverScreen({ roundsNumber, userNumber }) {
+export default function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) {
   return (
     <View style={styles.container}>
       <Title>GAME OVER</Title>
@@ -14,7 +14,7 @@ export default function GameOverScreen({ roundsNumber, userNumber }) {
         You found the number <Text style={styles.number}>{userNumber}</Text> with
         <Text style={styles.number}> {roundsNumber}</Text> attempts
       </Text>
-      <CustomButton>New Game</CustomButton>
+      <CustomButton onPress={onStartNewGame}>New Game</CustomButton>
     </View>
   );
 }
